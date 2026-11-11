@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="InciTrack, aplicación académica para gestión de incidencias y releases.">
+  <title>InciTrack | Registro de incidencias</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./src/logic.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><div class="shell bar">
+    <div class="brand"><span class="brandmark" aria-hidden="true">i</span><span>InciTrack</span></div>
+    <div class="topright"><span class="smallmuted">Gestión de configuración del software</span><span class="tag">v1.0.0</span></div>
+  </div></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="title-page">
+      <div><p class="eyebrow">CONTROL Y SEGUIMIENTO</p><h1 id="title-page">Centro de incidencias</h1>
+      <p class="intro">Registra reportes, revisa su estado y da seguimiento a la información. Una aplicación sencilla para demostrar control de versiones y despliegue continuo.</p></div>
+      <div class="hero-chip">● Proyecto académico · Unidad 3</div>
+    </section>
+    <section class="stats" aria-label="Resumen de incidencias">
+      <article class="stat"><div class="stat-top">Total <span class="dot"></span></div><strong id="stat-total">0</strong></article>
+      <article class="stat"><div class="stat-top">Abiertas <span class="dot open"></span></div><strong id="stat-open">0</strong></article>
+      <article class="stat"><div class="stat-top">En proceso <span class="dot progress"></span></div><strong id="stat-progress">0</strong></article>
+      <article class="stat"><div class="stat-top">Resueltas <span class="dot done"></span></div><strong id="stat-done">0</strong></article>
+    </section>
+    <section class="layout">
+      <aside class="panel" aria-labelledby="new-title"><div class="panel-h"><div><h2 id="new-title">Nueva incidencia</h2><p class="panel-sub">Completa los datos para crear un reporte.</p></div></div>
+        <form id="incident-form">
+          <div class="field"><label for="title">Título de incidencia *</label><input id="title" name="title" maxlength="100" minlength="4" required placeholder="Ej. No puedo acceder a la plataforma"></div>
+          <div class="field"><label for="description">Descripción</label><textarea id="description" name="description" maxlength="300" placeholder="Describe brevemente lo que sucedió..."></textarea></div>
+          <div class="field-grid"><div class="field"><label for="status">Estado</label><select id="status" name="status"><option value="abierta">Abierta</option><option value="en-proceso">En proceso</option><option value="resuelta">Resuelta</option></select></div>
+          <div class="field"><label for="priority">Prioridad</label><select id="priority" name="priority"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option></select></div></div>
+          <p id="notice" class="notice" role="status" aria-live="polite"></p>
+          <button class="primary" type="submit">+ Registrar incidencia</button>
+          <div class="helper">Los datos se guardan solo en este navegador.</div>
+        </form>
+      </aside>
+      <section class="panel" aria-labelledby="list-title">
+        <div class="panel-list-head"><div><h2 id="list-title">Listado de incidencias</h2><p id="incident-count" class="panel-sub">0 incidencias</p></div></div>
+        <div id="incident-list" class="incident-list" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+  <footer class="shell"><span>InciTrack · Práctica académica de configuración del software</span><span>Release v1.0.0</span></footer>
+</body>
+</html>
