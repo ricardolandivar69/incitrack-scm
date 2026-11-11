@@ -1,0 +1,61 @@
+name: Validación y despliegue continuo
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validar:
+    name: Ejecutar validaciones
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código fuente
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ejecutar pruebas
+        run: npm test
+      - name: Verificar archivos estáticos
+        run: node scripts/validar-estructura.cjs
+
+  desplegar:
+    name: Publicar en GitHub Pages
+    if: github.event_name != 'pull_request'
+    needs: validar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Obtener versión validada
+        uses: actions/checkout@v4
+      - name: Preparar carpeta pública
+        run: |
+          mkdir -p dist/src
+          cp index.html styles.css app.js dist/
+          cp src/logic.js dist/src/
+          touch dist/.nojekyll
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Subir archivos públicos
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+      - name: Desplegar sitio
+        id: deployment
+        uses: actions/deploy-pages@v4
