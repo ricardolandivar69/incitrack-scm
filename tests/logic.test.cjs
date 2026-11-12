@@ -20,8 +20,14 @@ test('el filtro encuentra incidencias abiertas', () => {
   const datos = [{estado: 'abierta'}, {estado: 'resuelta'}];
   assert.equal(filtrarIncidencias(datos, 'abierta').length, 1);
 });
-
 test('el filtro Todos muestra todos los registros', () => {
   const datos = [{estado: 'abierta'}, {estado: 'resuelta'}];
   assert.equal(filtrarIncidencias(datos, 'todos').length, 2);
+});
+
+test('regresión: Resuelta debe encontrarse aunque la opción use mayúscula', () => {
+  const datos = [{estado: 'abierta'}, {estado: 'resuelta'}];
+  const visibles = filtrarIncidencias(datos, 'Resuelta');
+  assert.equal(visibles.length, 1);
+  assert.equal(visibles[0].estado, 'resuelta');
 });
