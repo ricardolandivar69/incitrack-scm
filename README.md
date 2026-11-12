@@ -1,9 +1,9 @@
-# InciTrack - v1.1.0
+# InciTrack - v1.1.1
 
 Sistema de registro de incidencias creado para la asignatura **Gestión de la Configuración del Software**.
 
 ## Funciones
-- Añadir filtrado por estado (incluye una discrepancia reproducible en el filtro Resuelta para el ejercicio de mejora).
+- Corregir filtrado Resuelta normalizando mayúsculas/minúsculas y agregar prueba de regresión.
 - Registro de título, descripción, estado y prioridad.
 - Conteo por estado y almacenamiento local (solo en el navegador actual).
 - Interfaz adaptable a celular y escritorio.
