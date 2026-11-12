@@ -3,10 +3,9 @@
 Sistema de registro de incidencias creado para la asignatura **Gestión de la Configuración del Software**.
 
 ## Funciones
-- Crear y listar incidencias, visualizar estadísticas y conservarlas en localStorage.
+- Añadir filtrado por estado (incluye una discrepancia reproducible en el filtro Resuelta para el ejercicio de mejora).
 - Registro de título, descripción, estado y prioridad.
 - Conteo por estado y almacenamiento local (solo en el navegador actual).
-- Filtrado del listado por estado: todos, abierta, en proceso y resuelta.
 - Interfaz adaptable a celular y escritorio.
 
 ## Ejecutar
@@ -31,8 +30,6 @@ Cada pull request realiza las pruebas, pero no despliega.
 
 ## Limitaciones
 Esta es una simulación académica: no dispone de base de datos ni sincroniza datos entre computadoras. Los registros se almacenan en `localStorage` y el servidor de GitHub Pages sirve solamente archivos estáticos.
-
-En `v1.1.0` se identificó un comportamiento pendiente de corrección al seleccionar el filtro **Resuelta**. El defecto se conserva como caso de mejora continua y se corregirá en `v1.1.1`.
 
 ## Equipo
 Ricardo Landivar, Ángel Punina y Carlos Llivisupa.

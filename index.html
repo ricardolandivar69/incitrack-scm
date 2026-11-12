@@ -40,7 +40,12 @@
       </aside>
       <section class="panel" aria-labelledby="list-title">
         <div class="panel-list-head"><div><h2 id="list-title">Listado de incidencias</h2><p id="incident-count" class="panel-sub">0 incidencias</p></div>
-          <div class="filters"><label for="status-filter">Filtrar por estado</label><select id="status-filter"><option value="todos">Todos los estados</option><option value="abierta">Abierta</option><option value="en-proceso">En proceso</option><option value="resuelto">Resuelta</option></select></div>
+          <div class="filters"><label for="filter-state">Filtrar por estado</label><select id="filter-state" aria-label="Filtrar incidencias">
+<option value="todos">Todos los estados</option>
+<option value="abierta">Abierta</option>
+<option value="en-proceso">En proceso</option>
+<option value="Resuelta">Resuelta</option>
+</select></div>
         </div>
         <div id="incident-list" class="incident-list" aria-live="polite"></div>
       </section>

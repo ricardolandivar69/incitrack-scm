@@ -6,7 +6,6 @@
   const lista = document.getElementById('incident-list');
   const mensaje = document.getElementById('notice');
   const contador = document.getElementById('incident-count');
-  const filtroEstado = document.getElementById('status-filter');
   const nombresEstado = { abierta: 'Abierta', 'en-proceso': 'En proceso', resuelta: 'Resuelta' };
   const prioridades = { baja: 'Baja', media: 'Media', alta: 'Alta' };
 
@@ -52,8 +51,9 @@
     document.getElementById('stat-open').textContent = stats.abierta;
     document.getElementById('stat-progress').textContent = stats['en-proceso'];
     document.getElementById('stat-done').textContent = stats.resuelta;
-    let visibles = core.filtrarPorEstado(incidencias, filtroEstado.value);
-
+    let visibles = [...incidencias];
+    const elegido = document.getElementById('filter-state').value;
+    visibles = core.filtrarIncidencias(visibles, elegido);
     visibles.sort((a, b) => String(b.creado).localeCompare(String(a.creado)));
     contador.textContent = visibles.length + ' ' + (visibles.length === 1 ? 'incidencia' : 'incidencias');
     lista.replaceChildren();
@@ -87,7 +87,6 @@
     }
   });
 
-  filtroEstado.addEventListener('change', pintar);
-
+  document.getElementById('filter-state').addEventListener('change', pintar);
   pintar();
 })();

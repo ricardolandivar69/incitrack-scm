@@ -29,13 +29,14 @@
     };
   }
 
-  function filtrarPorEstado(incidencias, estado) {
-    const lista = Array.isArray(incidencias) ? incidencias : [];
-    if (!estado || estado === 'todos') return [...lista];
-    return lista.filter(incidencia => incidencia.estado === estado);
+  // v1.1.0: un valor de opción con mayúscula no coincide con el estado almacenado.
+  function filtrarIncidencias(incidencias, estado) {
+    return estado === 'todos'
+      ? incidencias
+      : incidencias.filter(incidencia => incidencia.estado === estado);
   }
 
-  const api = { crearIncidencia, resumen, filtrarPorEstado };
+  const api = { crearIncidencia, resumen, filtrarIncidencias };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.IncidentCore = api;
 })(typeof window !== 'undefined' ? window : globalThis);
