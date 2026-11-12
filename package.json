@@ -1,6 +1,6 @@
 {
   "name": "incitrack",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "App estática para control de incidencias",
   "scripts": { "test": "node --test tests/logic.test.cjs" }

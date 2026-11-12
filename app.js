@@ -86,7 +86,9 @@
       mensaje.textContent = error.message;
     }
   });
-
-  document.getElementById('filter-state').addEventListener('change', pintar);
+  document.getElementById('filter-state').addEventListener('change', function () {
+    mensaje.textContent = 'Filtro actualizado correctamente.';
+    pintar();
+  });
   pintar();
 })();

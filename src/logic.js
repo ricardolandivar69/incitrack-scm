@@ -29,13 +29,13 @@
     };
   }
 
-  // v1.1.0: un valor de opción con mayúscula no coincide con el estado almacenado.
+  // v1.1.1: comparar estados normalizados corrige el filtro "Resuelta".
   function filtrarIncidencias(incidencias, estado) {
-    return estado === 'todos'
+    const estadoElegido = String(estado || 'todos').trim().toLowerCase();
+    return estadoElegido === 'todos'
       ? incidencias
-      : incidencias.filter(incidencia => incidencia.estado === estado);
+      : incidencias.filter(incidencia => String(incidencia.estado).toLowerCase() === estadoElegido);
   }
-
   const api = { crearIncidencia, resumen, filtrarIncidencias };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.IncidentCore = api;
