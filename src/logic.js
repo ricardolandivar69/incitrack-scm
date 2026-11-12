@@ -28,7 +28,14 @@
       resuelta: lista.filter(i => i.estado === 'resuelta').length
     };
   }
-  const api = { crearIncidencia, resumen };
+
+  function filtrarPorEstado(incidencias, estado) {
+    const lista = Array.isArray(incidencias) ? incidencias : [];
+    if (!estado || estado === 'todos') return [...lista];
+    return lista.filter(incidencia => incidencia.estado === estado);
+  }
+
+  const api = { crearIncidencia, resumen, filtrarPorEstado };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.IncidentCore = api;
 })(typeof window !== 'undefined' ? window : globalThis);
