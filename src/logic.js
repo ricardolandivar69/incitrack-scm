@@ -28,7 +28,15 @@
       resuelta: lista.filter(i => i.estado === 'resuelta').length
     };
   }
-  const api = { crearIncidencia, resumen };
+
+  // v1.1.0: un valor de opción con mayúscula no coincide con el estado almacenado.
+  function filtrarIncidencias(incidencias, estado) {
+    return estado === 'todos'
+      ? incidencias
+      : incidencias.filter(incidencia => incidencia.estado === estado);
+  }
+
+  const api = { crearIncidencia, resumen, filtrarIncidencias };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.IncidentCore = api;
 })(typeof window !== 'undefined' ? window : globalThis);

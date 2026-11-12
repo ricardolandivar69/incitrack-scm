@@ -52,7 +52,8 @@
     document.getElementById('stat-progress').textContent = stats['en-proceso'];
     document.getElementById('stat-done').textContent = stats.resuelta;
     let visibles = [...incidencias];
-
+    const elegido = document.getElementById('filter-state').value;
+    visibles = core.filtrarIncidencias(visibles, elegido);
     visibles.sort((a, b) => String(b.creado).localeCompare(String(a.creado)));
     contador.textContent = visibles.length + ' ' + (visibles.length === 1 ? 'incidencia' : 'incidencias');
     lista.replaceChildren();
@@ -86,5 +87,6 @@
     }
   });
 
+  document.getElementById('filter-state').addEventListener('change', pintar);
   pintar();
 })();
